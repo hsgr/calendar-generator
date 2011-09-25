@@ -1,0 +1,9 @@
+* Calendar Generator
+
+** About
+Generate ICS calendar using Semantic MediaWiki API for [[http://hackerspace.gr/][hackerspace.gr]]
+
+** Install
+1. Place on server
+2. Create a daily cron job
+3. Make sure that you webserver serves .ics files as UTF-8 (see [[https://groups.google.com/group/google-calendar-help-dataapi/browse_thread/thread/561779f697ffadef/2852d3a4983596e1?pli=1][utf-8 issue]])
