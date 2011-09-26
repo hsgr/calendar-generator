@@ -30,6 +30,7 @@ def unescape(s):
 def main():
     try:
         results = urllib.urlopen(QUERY).read()
+
     except:
         raise
 
@@ -53,9 +54,11 @@ def main():
             continue
 
         try:
+            uri = item['uri'][43:].encode("utf-8")
             url = googl.shorten(item['uri'][:43] +\
-                                urllib.quote(item['uri'][43:])
+                                urllib.quote(uri)
                                 ).encode("utf-8")
+
         except KeyError:
             url = ""
 
