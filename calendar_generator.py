@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 import googl
 
 QUERY = "http://hackerspace.gr/api.php?action=ask&q=[[Category:Events]]" \
-        "&format=json&po=location|Start%20date|End%20date"
+        "&format=json&po=location|Start%20date|End%20date|displaytitle"
 
 HEADER = string.join(("BEGIN:VCALENDAR",
                      "PRODID:-//Hackerspace.gr Events//hackerspace.gr//",
@@ -74,7 +74,7 @@ def main():
         calendar_entry = string.join(
             (
                 "BEGIN:VEVENT",
-                "UID:%s@hsgr" % item['title'].encode('utf-8').replace(' ', '_'),
+                "UID:%s@hsgr" % item['displaytitle'].encode('utf-8').replace(' ', '_'),
                 "DTSTAMP;TZID=Europe/Athens:%04d%02d%02dT%02d%02d00" % (
                     start_date.year,
                     start_date.month,
@@ -94,7 +94,7 @@ def main():
                     end_date.day,
                     end_date.hour,
                     end_date.minute),
-                "SUMMARY:%s" % unescape(item['title']).encode("utf-8"),
+                "SUMMARY:%s" % unescape(item['displaytitle']).encode("utf-8"),
                 "DESCRIPTION:%s" % (url),
                 "END:VEVENT",
                 ),
