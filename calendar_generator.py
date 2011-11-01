@@ -46,6 +46,14 @@ def main():
 
     for item in data:
         try:
+    	    displaytitle = item['properties']['displaytitle']
+
+	except:
+    	    #no displaytitle
+    	    continue
+
+
+        try:
             start_date = datetime.strptime(item['properties']['start_date'],
                                            "%Y-%m-%d %H:%M:%S"
                                            )
@@ -74,7 +82,7 @@ def main():
         calendar_entry = string.join(
             (
                 "BEGIN:VEVENT",
-                "UID:%s@hsgr" % item['displaytitle'].encode('utf-8').replace(' ', '_'),
+                "UID:%s@hsgr" % displaytitle.encode('utf-8').replace(' ', '_'),
                 "DTSTAMP;TZID=Europe/Athens:%04d%02d%02dT%02d%02d00" % (
                     start_date.year,
                     start_date.month,
@@ -94,7 +102,7 @@ def main():
                     end_date.day,
                     end_date.hour,
                     end_date.minute),
-                "SUMMARY:%s" % unescape(item['displaytitle']).encode("utf-8"),
+                "SUMMARY:%s" % unescape(displaytitle).encode("utf-8"),
                 "DESCRIPTION:%s" % (url),
                 "END:VEVENT",
                 ),
