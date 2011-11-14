@@ -6,6 +6,7 @@ import json
 import urllib
 import string
 import htmllib
+import hashlib
 from datetime import datetime, timedelta
 
 import googl
@@ -74,7 +75,9 @@ def main():
         calendar_entry = string.join(
             (
                 "BEGIN:VEVENT",
-                "UID:%s@hsgr" % item['title'].encode('utf-8').replace(' ', '_'),
+                "UID:%s@hsgr" % hashlib.md5(item['title'].encode('utf-8') +\
+                                            str(start_date)
+                                            ).hexdigest(),
                 "DTSTAMP;TZID=Europe/Athens:%04d%02d%02dT%02d%02d00" % (
                     start_date.year,
                     start_date.month,
