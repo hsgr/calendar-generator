@@ -47,11 +47,10 @@ def main():
 
     for item in data:
         try:
-    	    displaytitle = item['properties']['displaytitle']
+            displaytitle = item['properties']['displaytitle']
 
-	except:
-    	    #no displaytitle
-    	    continue
+        except:
+            displaytitle = 'Unknown title'
 
 
         try:
