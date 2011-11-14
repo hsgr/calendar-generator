@@ -82,7 +82,7 @@ def main():
         calendar_entry = string.join(
             (
                 "BEGIN:VEVENT",
-                "UID:%s@hsgr" % displaytitle.encode('utf-8').replace(' ', '_'),
+                "UID:%s@hsgr" % item['title'].encode('utf-8').replace(' ', '_'),
                 "DTSTAMP;TZID=Europe/Athens:%04d%02d%02dT%02d%02d00" % (
                     start_date.year,
                     start_date.month,
