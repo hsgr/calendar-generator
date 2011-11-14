@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 import googl
 
 QUERY = "http://hackerspace.gr/api.php?action=ask&q=[[Category:Events]]" \
-        "&format=json&po=location|Start%20date|End%20date"
+        "&format=json&po=location|Start%20date|End%20date|displaytitle"
 
 HEADER = string.join(("BEGIN:VCALENDAR",
                      "PRODID:-//Hackerspace.gr Events//hackerspace.gr//",
@@ -46,6 +46,14 @@ def main():
     print HEADER
 
     for item in data:
+        try:
+    	    displaytitle = item['properties']['displaytitle']
+
+	except:
+    	    #no displaytitle
+    	    continue
+
+
         try:
             start_date = datetime.strptime(item['properties']['start_date'],
                                            "%Y-%m-%d %H:%M:%S"
@@ -97,7 +105,7 @@ def main():
                     end_date.day,
                     end_date.hour,
                     end_date.minute),
-                "SUMMARY:%s" % unescape(item['title']).encode("utf-8"),
+                "SUMMARY:%s" % unescape(displaytitle).encode("utf-8"),
                 "DESCRIPTION:%s" % (url),
                 "END:VEVENT",
                 ),
