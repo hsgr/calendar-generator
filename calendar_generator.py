@@ -48,16 +48,14 @@ def main():
     for item in data:
         try:
             displaytitle = item['properties']['displaytitle']
-
         except:
+	    #notitle
             displaytitle = 'Unknown title'
-
 
         try:
             start_date = datetime.strptime(item['properties']['start_date'],
                                            "%Y-%m-%d %H:%M:%S"
                                            )
-
         except ValueError:
             # cannot parse date, move to next time
             continue
