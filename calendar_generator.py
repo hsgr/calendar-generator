@@ -9,7 +9,7 @@ import htmllib
 import hashlib
 from datetime import datetime, timedelta
 
-import googl
+import tinyurl
 
 QUERY = "http://hackerspace.gr/api.php?action=ask&q=[[Category:Events]]" \
         "&format=json&po=location|Start%20date|End%20date|displaytitle"
@@ -72,9 +72,10 @@ def main():
 
         try:
             uri = item['uri'][43:].encode("utf-8")
-            url = googl.shorten(item['uri'][:43] +\
-                                urllib.quote(uri)
-                                ).encode("utf-8")
+            url = tinyurl.create(item['uri'][:43] +\
+                                 urllib.quote(uri)
+                                 ).next()
+            url = url.encode("utf-8")
 
         except KeyError:
             url = ""
