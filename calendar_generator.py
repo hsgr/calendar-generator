@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 
 import tinyurl
 
-QUERY = "http://hackerspace.gr/api.php?action=ask&q=[[Category:Events]]" \
+QUERY = "http://hackerspace.gr/api.php?action=ask&query=[[Category:Events]]" \
         "&format=json&po=location|Start%20date|End%20date|displaytitle"
 
 HEADER = string.join(("BEGIN:VCALENDAR",
